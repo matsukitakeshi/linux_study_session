@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: training-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306"
+    networks:
+      - training_net
+
+  linux_server:
+    build:
+      context: .
+    container_name: linux_server
+    ports:
+      - "2201:22"
+    networks:
+      - training_net
+
+networks:
+  training_net:
+    external: false
